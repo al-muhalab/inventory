@@ -1,72 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Welcome to My Website</h1>
 
-        <!-- Navigation Menu -->
-        <ul class="nav nav-pills justify-content-center mb-4">
-            <li class="nav-item">
-                <a class="nav-link active" href="#home" onclick="showContent('home')">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#manpower" onclick="showContent('manpower')">Manpower</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#store" onclick="showContent('store')">Store</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#vehicle" onclick="showContent('vehicle')">Vehicle</a>
-            </li>
-        </ul>
+<form action="/action_page.php">
+  <div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
 
-        <!-- Content Section -->
-        <div id="content" class="mt-4">
-            <div id="home-content">
-                <h2>Home</h2>
-                <p>Welcome to the homepage of My Website!</p>
-            </div>
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
-            <div id="manpower-content" style="display: none;">
-                <h2>Manpower</h2>
-                <p>Details about manpower will go here.</p>
-            </div>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-            <div id="store-content" style="display: none;">
-                <h2>Store</h2>
-                <p>Loading items from the database...</p>
-                <div id="store-data"></div>
-            </div>
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    <hr>
+    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-            <div id="vehicle-content" style="display: none;">
-                <h2>Vehicle</h2>
-                <p>Details about vehicles will go here.</p>
-            </div>
-        </div>
-    </div>
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+  
+  <div class="container signin">
+    <p>Already have an account? <a href="#">Sign in</a>.</p>
+  </div>
+</form>
 
-    <script>
-        function showContent(section) {
-            const sections = ['home', 'manpower', 'store', 'vehicle'];
-            sections.forEach(id => {
-                document.getElementById(`${id}-content`).style.display = id === section ? 'block' : 'none';
-            });
-
-            if (section === 'store') {
-                fetch('fetch_store.php')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('store-data').innerHTML = data;
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
-        }
-    </script>
 </body>
 </html>
